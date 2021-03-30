@@ -21,7 +21,7 @@
 
   <tbody id="table">
     <% @posts.each do |post| %>
-      <tr>
+      <tr id="post_<%= post.id %>">
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <td><%= link_to 'Show', post, remote: true %></td>
