@@ -1,13 +1,21 @@
+/*
 var table = document.getElementById('table');
 var tr = document.createElement('tr');
 var td_title = document.createElement('td');
 var td_content = document.createElement('td');
-
-
-td_title.innerHTML = '<%= @post.title %>';
-td_content.innerHTML = '<%= @post.content %>';
-
+td_title.innerHTML = '<#%= @post.title %>';
+td_content.innerHTML = '<#%= @post.content %>';
 tr.appendChild(td_title);
 tr.appendChild(td_content);
-
 table.appendChild(tr);
+*/
+
+$('#table').append(``
+                <tr id="post_<%= @post.id %>">
+                    <td><%= @post.title %></td>
+                    <td><%= @post.content %></td>
+                    <td><%= link_to 'Show', @post, remote: true %></td>
+                    <td><%= link_to 'Edit', edit_post_path(@post.id), remote: true %></td>
+                    <td><%= link_to 'Destroy', @post, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+                `)

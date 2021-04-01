@@ -1,40 +1,52 @@
-<p id="notice"><%= notice %></p>
-<div style="display: flex; justify-content: space-around; align-items: top;">
-  <div>
-    <%= render "new" %>
-  </div>
-
-  <div id="show_post">
-  </div>
+<div class="container-fluid p-3 border bg-warning text-center">
+  <%= form_with(url: root_path, method: :get, remote: true) do |f| %>
+    <%= f.text_field :q, size:'70px' %>
+    <%= f.submit 'Buscar', class:'btn btn-dark ml-3' %>
+  <% end %>
 </div>
 
-<h1>Posts</h1>
+<div class="container">
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <p id="notice"><%= notice %></p>
 
-  <tbody id="table">
-    <% @posts.each do |post| %>
-      <tr id="post_<%= post.id %>">
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post, remote: true %></td>
-        <td><%= link_to 'Edit', edit_post_path(post.id), remote: true %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div style="display: flex; justify-content: space-around; align-items: top;">
+    <div class="border rounded p-3 mt-2 bg-light" style="width: 40%;">
+      <%= render "new" %>
+    </div>
 
-<br>
+    <div class="border rounded p-3 mt-2 bg-light" style="width: 40%;">
+      <h3 class="mb-4">Ver Post</h3>
+      <div id="show_post">
+      </div>
+    </div>
+  </div>
 
-<%= link_to 'New Post', new_post_path %>
+  <div class="container-fluid border rounded bg-light p-3 mt-4">
+    <h3>Posts Publicados</h3>
 
-<div id="modal_edit">
+    <table class="table table-borderer">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th class="text-center" colspan="3">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody id="table">
+        <% @posts.each do |post| %>
+          <tr id="post_<%= post.id %>">
+            <td><%= post.title %></td>
+            <td><%= post.content %></td>
+            <td><%= link_to 'Show', post, remote: true %></td>
+            <td><%= link_to 'Edit', edit_post_path(post.id), remote: true %></td>
+            <td><%= link_to 'Destroy', post, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="modal_edit">
+  </div>
 </div>

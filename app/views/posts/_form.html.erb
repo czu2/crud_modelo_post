@@ -11,17 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="container">
+    <h3>Nuevo Post</h3>
+
+    <div class="field">
+      <%= form.text_field :title, size:'25px', placeholder:'Título' %>
+    </div>
+
+    <div class="field">
+      <%= form.text_field :content, size:'25px', placeholder:'Contenido' %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Crear Post',class:'btn btn-primary' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
